@@ -1,4 +1,17 @@
-const Terms = ['Q1', 'Q2', 'Q3', 'Q4'];
+const Terms = [
+    '1-Month',
+    '2-Month',
+    '3-Month',
+    '6-Month',
+    '1-Year',
+    '2-Year',
+    '3-Year',
+    '5-Year',
+    '7-Year',
+    '10-Year',
+    '20-Year',
+    '30-Year'
+];
 
 $(document).ready(async function () {
     await init();
