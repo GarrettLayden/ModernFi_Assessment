@@ -86,11 +86,19 @@ async function createOrderHistorySection(listOfOrders) {
 async function submitOrder() {
     console.log('order submitted');
 
-    let termToAdd = $('#TermDropdown').val();
-    let amountToAdd = $('#AmountInput').val();
-
+    let termToAdd = $('#TermDropdown').val().trim();
+    let amountToAdd = $('#AmountInput').val().trim();
+    
     if (!termToAdd || !amountToAdd) {
         $('#OrderValidationMessage').text('Term and Amount are required');
+        return;
+    }
+    
+    amountToAdd = Number(amountToAdd);
+
+    // Additional check to verify that the Amount input is a number
+    if (!Number.isFinite(amountToAdd)){
+        $('#OrderValidationMessage').text('Amount must be a valid number');
         return;
     }
 
