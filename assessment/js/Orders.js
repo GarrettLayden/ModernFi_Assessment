@@ -46,7 +46,6 @@ async function getOrders() {
         }
 
         const listOfOrders = await response.json();
-        console.log('orders received..');        
         return listOfOrders.orders;
     }
     catch (ex) {
@@ -56,9 +55,6 @@ async function getOrders() {
 }
 
 async function createOrderHistorySection(listOfOrders) {
-    console.log('viewing orders...: ', listOfOrders);
-    console.log(listOfOrders);
-
     if (listOfOrders === undefined || listOfOrders.length === 0) {
         return;
     }
@@ -66,7 +62,6 @@ async function createOrderHistorySection(listOfOrders) {
     let orderDivs = '';
     for (let i = listOfOrders.length - 1; i >= 0; i--) {
         const order = listOfOrders[i];
-        console.log('i', i);
         
         let orderCreatedAt = formatDateTime(order.timeStamp);
 
@@ -78,15 +73,10 @@ async function createOrderHistorySection(listOfOrders) {
             </div>`
     }
 
-    console.log('orderDivs: ', orderDivs);
-
     $('#OrderHistoryDiv').html(orderDivs);
-    console.log('order history section created..');
 }
 
 async function submitOrder() {
-    console.log('order submitted');
-
     let termToAdd = $('#TermDropdown').val().trim();
     let amountToAdd = $('#AmountInput').val().trim();
     
@@ -104,9 +94,6 @@ async function submitOrder() {
     }
 
     try {
-        console.log({termToAdd})
-        console.log({amountToAdd})
-
         const response = await fetch('/orders/create', {
             method: 'POST',
             headers: {
