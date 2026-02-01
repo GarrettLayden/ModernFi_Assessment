@@ -4,7 +4,7 @@ const router = express.Router();
 
 console.log(JSON.stringify(ordersController));
 
-router.get('/', ordersController.getOrders);
+router.get('/get', ordersController.getOrders);
 
 router.post('/create', ordersController.createOrder);
 

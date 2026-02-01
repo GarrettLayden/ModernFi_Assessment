@@ -7,7 +7,7 @@ class OrdersController {
     // 
     async getOrders(req, res) {
         try {
-            const orders = OrderList.getOrders();
+            const orders = orderList.getOrders();
 
             return res.json({
                 orders: orders
