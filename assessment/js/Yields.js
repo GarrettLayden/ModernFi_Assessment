@@ -9,7 +9,7 @@ async function readRecentTreasuryYieldData() {
     return new Promise((resolve, reject) => {
         $.ajax({
             // url: _api.readRecentTreasuryYieldData.url,
-            url: `https://financialmodelingprep.com/stable/treasury-rates?apikey=zb0MOk43QNunW5AfjtuTtFQO0H8LCTnX&from=2026-01-30`,
+            url: `${_api.getTreasuryYieldDataByRecentDate.url}?apikey=${_api.getTreasuryYieldDataByRecentDate.key}&from=2026-01-30`,
             type: "GET",
             cache: false,
             // headers: _api.readRecentTreasuryYieldData.key,

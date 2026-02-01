@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const fs = require('fs');
 
 const app = express();
 const PORT = 3000;
@@ -21,6 +22,14 @@ app.get('/yields', (req, res) => {
 app.get('/orders', (req, res) => {
     res.sendFile(__dirname + '/Orders.html');
 });
+
+app.get('/apijs', (req, res) => {
+    fs.readFile(__dirname + '/js/_api.js', function(err, data) {
+        res.writeHead(200, {'Content-Type': 'text/javascript'});
+        res.write(data);
+        return res.end();
+    });
+})
 
 // Starting APIs
 const yields = require('./routes/yields');
