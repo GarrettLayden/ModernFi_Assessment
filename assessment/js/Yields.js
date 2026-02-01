@@ -47,13 +47,21 @@ async function createTreasuryYieldCurve(yieldData) {
                 x: {
                     title: {
                         display: true,
-                        text: 'Maturity'
+                        text: 'Maturity',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        }
                     }
                 },
                 y: {
                     title: {
                         display: true,
                         text: 'Yield Rate (%)',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        }
                     },
                     beginAtZero: false,
                     min: Math.floor(Math.min(...formattedYieldData.yieldCurveDataPoints) - 0.5),
@@ -83,7 +91,7 @@ function formatYieldDataForYieldCurve(yieldData) {
 
     for (let key in yieldData) {
         if (key !== 'date') {
-            yieldCurveLabels.push(key);
+            yieldCurveLabels.push(formatKeys(key));
             yieldCurveDataPoints.push(yieldData[key]);
         }
     }
@@ -93,6 +101,27 @@ function formatYieldDataForYieldCurve(yieldData) {
         yieldCurveDataPoints,
         yieldCurveLabels
     }
+}
+
+// Converts API response keys to 'number-time' format (ex: 1-Month, 5-Year)
+// Hard-Coded since API response is consistent
+function formatKeys(key) {
+    const labelMapping = {
+        month1: '1-Month',
+        month2: '2-Month',
+        month3: '3-Month',
+        month6: '6-Month',
+        year1: '1-Year',
+        year2: '2-Year',
+        year3: '3-Year',
+        year5: '5-Year',
+        year7: '7-Year',
+        year10: '10-Year',
+        year20: '20-Year',
+        year30: '30-Year'
+    }
+
+    return labelMapping[key];
 }
 
 function formatDate(date) {
