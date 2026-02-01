@@ -26,6 +26,7 @@ async function readRecentTreasuryYieldData() {
 
 async function createTreasuryYieldCurve(yieldData) {    
     const formattedYieldData = formatYieldDataForYieldCurve(yieldData);
+    $('#yieldDate').text(`Data as of ${formattedYieldData.todaysDate}`)
     const chartElement = document.getElementById('TreasuryYieldCurveChart').getContext('2d');
 
     const chartConfig = {
@@ -34,10 +35,35 @@ async function createTreasuryYieldCurve(yieldData) {
             labels: formattedYieldData.yieldCurveLabels,
             datasets: [{
                 label: 'Treasury Yield (%)',
-                data: formattedYieldData.yieldCurveDataPoints
-            }],
+                data: formattedYieldData.yieldCurveDataPoints,
+                fill: true,
+                tension: 0.2,
+                pointHoverRadius: 8,
+                pointHoverBorderWidth: 3
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Maturity'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Yield Rate (%)',
+                    },
+                    beginAtZero: false,
+                    min: Math.floor(Math.min(...formattedYieldData.yieldCurveDataPoints) - 0.5),
+                    max: Math.ceil(Math.max(...formattedYieldData.yieldCurveDataPoints) + 0.5)
+                }
+            }
         }
     }
+
+    console.log(chartConfig);
 
     return new Chart(chartElement, chartConfig);
 }
