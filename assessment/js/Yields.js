@@ -4,6 +4,8 @@ $(document).ready(async function () {
 });
  
 async function readRecentTreasuryYieldData() {
+    const todaysDate = formatDate(new Date());
+
     return new Promise((resolve, reject) => {
         $.ajax({
             // url: _api.readRecentTreasuryYieldData.url,
@@ -65,5 +67,20 @@ function formatYieldDataForYieldCurve(yieldData) {
         yieldCurveDataPoints,
         yieldCurveLabels
     }
+}
 
+function formatDate(date) {
+    date = (date instanceof Date) ? date : new Date(date);
+
+    let year = date.getFullYear();
+    let month = convertToTwoDigits(date.getMonth() + 1);
+    let day = convertToTwoDigits(date.getDate());
+
+    console.log(`${year}-${month}-${day}`)
+
+    return `${year}-${month}-${day}`;
+}
+
+function convertToTwoDigits(num) {
+    return ("0" + num).slice(-2);
 }
