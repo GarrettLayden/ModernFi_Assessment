@@ -27,4 +27,4 @@ Must have Git, Node.js, and npm installed on your device
 
 
 ## Known Issues
-* The API that is called is NOT updated on the weekends, making it unable to view the treasury yield curve on a weekend
+* The API that is called to fetch treasury yield data is NOT updated on the weekends, making it unable to view the treasury yield curve on a weekend
