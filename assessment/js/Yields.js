@@ -71,8 +71,6 @@ async function createTreasuryYieldCurve(yieldData) {
         }
     }
 
-    console.log(chartConfig);
-
     return new Chart(chartElement, chartConfig);
 }
 
@@ -86,8 +84,6 @@ function formatYieldDataForYieldCurve(yieldData) {
     const todaysDate = yieldData.date;
     const yieldCurveDataPoints = [];
     const yieldCurveLabels = [];
-
-    console.log('yield data: ', yieldData);
 
     for (let key in yieldData) {
         if (key !== 'date') {
@@ -130,8 +126,6 @@ function formatDate(date) {
     let year = date.getFullYear();
     let month = convertToTwoDigits(date.getMonth() + 1);
     let day = convertToTwoDigits(date.getDate());
-
-    console.log(`${year}-${month}-${day}`)
 
     return `${year}-${month}-${day}`;
 }

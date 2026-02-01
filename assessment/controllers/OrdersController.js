@@ -4,7 +4,6 @@ const orderList = new OrderList(); // Find new place for this list of orders (wo
 class OrdersController {
     constructor() {}
     // GET function
-    // 
     async getOrders(req, res) {
         try {
             const orders = orderList.getOrders();
@@ -26,7 +25,6 @@ class OrdersController {
     // POST function
     async createOrder(req, res) {
         try {
-            console.log(req.body);
             const { term, amount } = req.body;
 
             if (!term || !amount) {
