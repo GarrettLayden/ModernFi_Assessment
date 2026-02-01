@@ -14,11 +14,18 @@ app.get('/', (req, res) => {
 // Routing HTML
 app.use(express.static(__dirname + '/'));
 
+app.get('/yields', (req, res) => {
+    res.sendFile(__dirname + '/Yields.html');
+});
+
 app.get('/orders', (req, res) => {
     res.sendFile(__dirname + '/Orders.html');
 });
 
 // Starting APIs
+const yields = require('./routes/yields');
+app.use('/yields', yields);
+
 const orders = require('./routes/orders');
 app.use('/orders', orders);
 
