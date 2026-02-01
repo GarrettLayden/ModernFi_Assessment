@@ -9,10 +9,16 @@ class Order {
 
 class OrderList { 
     constructor() {
-
+        this.orders = [];
     }
-    
-    orders = [];
+
+    addOrder(orderClass) {
+        return this.orders.push(orderClass);
+    }    
+
+    getOrders() {
+        return this.orders;
+    }
 }
 
 module.exports = { Order, OrderList };

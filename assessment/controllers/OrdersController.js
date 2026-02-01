@@ -1,4 +1,5 @@
 const { Order, OrderList } = require("../ClassObjects");
+const orderList = new OrderList(); // Find new place for this list of orders (works here, but doesn't belong here)
 
 class OrdersController {
     constructor() {}
@@ -6,7 +7,7 @@ class OrdersController {
     // 
     async getOrders(req, res) {
         try {
-            const orders = OrderList.orders;
+            const orders = OrderList.getOrders();
 
             return res.json({
                 orders: orders
@@ -25,6 +26,7 @@ class OrdersController {
     // POST function
     async createOrder(req, res) {
         try {
+            console.log(req.body);
             const { term, amount } = req.body;
 
             if (!term || !amount) {
@@ -33,10 +35,8 @@ class OrdersController {
                 });
             }
 
-            const order = new Order(req.body);
-            OrderList.orders.push(order);
-
-            console.log('Order List: ', { OrderList });
+            const order = new Order(req.body);            
+            orderList.addOrder(order);
 
             return res.status(200).json({
                 success: true,
