@@ -66,7 +66,7 @@ async function createOrderHistorySection(listOfOrders) {
         let orderCreatedAt = formatDateTime(order.timeStamp);
 
         orderDivs += `
-            <div class="mb-3 border border-secondary w-25">
+            <div class="mb-3 p-2 border border-secondary w-25">
                 <div><strong>Term: </strong>${order.term}</div>
                 <div><strong>Amount: </strong>${order.amount}</div>
                 <div><strong>Created At: </strong>${orderCreatedAt}</div>
